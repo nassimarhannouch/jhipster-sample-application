@@ -1,0 +1,55 @@
+entity Module {
+  codeModule String required,
+  nom String required,
+  filiere String required,
+  semestre Integer required
+}
+
+entity ElementModule {
+  codeElement String required,
+  nom String required,
+  coefficient Double required
+}
+
+entity ModaliteEvaluation {
+  codeModalite String required,
+  coefficientEvaluation Double required
+}
+
+entity Filiere {
+  codeFiliere String required,
+  nom String required
+}
+
+
+entity Etudiant {
+  codeEtudiant String required,
+  nom String required,
+  prenom String required
+}
+
+entity Note {
+  codeNote String required,
+  valeur Double required
+}
+
+relationship OneToMany {
+  Filiere to Module
+}
+
+relationship ManyToOne {
+  Module to Filiere,
+  ElementModule to Module,
+  ModaliteEvaluation to ElementModule,
+  Note to Etudiant,
+  Note to ElementModule
+}
+
+relationship OneToMany {
+  Filiere to Etudiant,
+  Etudiant to Module
+}
+
+relationship ManyToOne {
+  Etudiant to Filiere
+}
